@@ -11,6 +11,3 @@ The companion application that reads in values and transmits them over USB is de
 ## Teensy-LC
 The teensy-lc is an arduino compatible microcontroller that manages the user input while playing Deep Rock Galactic. It can recieve information about the current amount of nitra in your team's inventory, and it can fire off a command to launch a supply drop. There is also a SAFE/ARM switch to ensure that you cannot accidentally call in a supply drop should you want to conserve nitra. 
 
-## But Why Tho?
-
-I play Gunner. Gunner's bubble shield is mapped by default to keyboard key 4. Supply Pod is mapped to keyboard key 5. A majority of bubble shields are used reactively during high stress situations and there is a larger than average possibility of mistakes being made while attempting to use one. Since both supply pods and bubble shields are used in the exact same way with potentially no delay, it is easy to accidentally call in a supply pod instead of a life saving shield. B.O.R.I.S is designed to help correct this by separating the supply pod from the keyboard entirely. 
