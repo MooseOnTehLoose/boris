@@ -15,7 +15,7 @@ Other functionality to be added soon.
 
 ## Flashing Setup
 
-The correct settings in arduino for flashing this code to a teensy are:
+The correct settings in arduino for flashing this code to a teensy-lc are:
 
 - Board: "Teensy LC"
 - USB Type: "Serial + Keyboard + Mouse + Joystick"
