@@ -12,3 +12,12 @@ Currently this firmware enables the teensy to:
 
 
 Other functionality to be added soon. 
+
+## Flashing Setup
+
+The correct settings in arduino for flashing this code to a teensy are:
+
+- Board: "Teensy LC"
+- USB Type: "Serial + Keyboard + Mouse + Joystick"
+- CPU Speed: "48 MHz"
+- Optimize: "Smallest Code"
