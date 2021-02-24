@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"time"
 
@@ -52,16 +53,6 @@ func main() {
 					outTE.SetText(windowMessage)
 				},
 			},
-			PushButton{
-				Text: "Re-Connect",
-				OnClicked: func() {
-					//resync and reset the status message
-					if sync() == nil {
-						outTE.SetText(windowMessage)
-					}
-
-				},
-			},
 		},
 	}.Run()
 
@@ -73,11 +64,18 @@ func sync() (err error) {
 	if err != nil {
 		return err
 	}
-	for p := range comPortList {
-		connectErr := connect(comPortList[p])
-		if connectErr == nil {
-			return connectErr
+
+	if len(comPortList) > 0 {
+		for p := range comPortList {
+			connectSuccessful := connect(comPortList[p])
+			fmt.Println(comPortList[p])
+			if connectSuccessful {
+				break
+			}
 		}
+
+	} else {
+		windowMessage = "0 COM ports detected"
 	}
 
 	return err
@@ -85,51 +83,61 @@ func sync() (err error) {
 }
 
 // takes a com port ie COM9 and attempts to PING/ACK.
-func connect(comPort string) (err error) {
+func connect(comPort string) (success bool) {
 
 	//generate the serial port configuration
-	c := &serial.Config{Name: "COM9", Baud: 9600, ReadTimeout: time.Second * 1}
-	//attempt to connect to the arduino via serial
+	c := &serial.Config{Name: comPort, Baud: 9600, ReadTimeout: time.Millisecond * 500}
 	teensy, errPort = serial.OpenPort(c)
-	if err != nil {
-		windowMessage = "cant open port"
-		return errPort
+	if errPort != nil {
+		teensy = nil
+		return false
 	}
 
 	//attempt to start the handshake process with the teensy
 	//all communications must end with newline so the teensy knows we've stopped transmitting
-	_, errPort = teensy.Write([]byte("PING\n"))
-	if errPort != nil {
-		return errPort
+	c1 := make(chan error, 1)
+	go func() {
+		_, writeErr := teensy.Write([]byte("PING\n"))
+		c1 <- writeErr
+	}()
+
+	select {
+	case errPort = <-c1:
+		buff := make([]byte, 32)
+		incoming := ""
+		for {
+			n, err := teensy.Read(buff)
+			if err != nil {
+				windowMessage = "There was an error reading from teensy"
+				return false
+			} else if n == 0 {
+				//end of file
+				break
+			}
+			//append the characters in the buffer to the message we're trying to recieve
+			incoming += string(buff[:n])
+
+			//dont let another device spam us
+			if len(incoming) > 5 {
+				break
+			}
+			// If we receive a newline stop reading, this is a good thing
+			if strings.Contains(string(buff[:n]), "\n") {
+				break
+			}
+		}
+		incoming = strings.TrimSpace(incoming)
+		if incoming == "ACK" {
+			windowMessage = "Connected on port: " + comPort
+			return true
+		}
+
+	case <-time.After(100 * time.Millisecond):
+		windowMessage = "No ports responded, connection failure"
+		return false
 	}
 
-	buff := make([]byte, 32)
-	incoming := ""
-	for {
-		n, err := teensy.Read(buff)
-		if err != nil {
-			windowMessage = "cant read"
-			//failure to read
-			return err
-		} else if n == 0 {
-			//end of file
-			break
-		}
-		//append the characters in the buffer to the message
-		incoming += string(buff[:n])
-		// If we receive a newline stop reading, this is a good thing
-		if strings.Contains(string(buff[:n]), "\n") {
-			break
-		}
-	}
-	incoming = strings.TrimSpace(incoming)
-	if incoming != "ACK" {
-		windowMessage = incoming + " - cant open port"
-		return err
-
-	}
-	//should be nil if we get to here
-	return errPort
+	return false
 }
 
 func writeNitra(nitra string) {
