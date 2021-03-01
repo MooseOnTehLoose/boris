@@ -11,3 +11,8 @@ The companion application that reads in values and transmits them over USB is de
 ## Teensy-LC
 The teensy-lc is an arduino compatible microcontroller that manages the user input while playing Deep Rock Galactic. It can recieve information about the current amount of nitra in your team's inventory, and it can fire off a command to launch a supply drop. There is also a SAFE/ARM switch to ensure that you cannot accidentally call in a supply drop should you want to conserve nitra. 
 
+## 3d Printed Enclosure
+All the files required to print your own enclosure can be found here: https://www.prusaprinters.org/prints/58566-boris
+
+## Electronics 
+A full Circuit Diagram and Parts list is coming soon
