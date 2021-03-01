@@ -21,3 +21,10 @@ The correct settings in arduino for flashing this code to a teensy-lc are:
 - USB Type: "Serial + Keyboard + Mouse + Joystick"
 - CPU Speed: "48 MHz"
 - Optimize: "Smallest Code"
+
+There is a bug in the SevenSegmentTM1637 library installed via the arduino library manager. 
+To fix it, go to your arduino libraries folder, find SevenSegmentTM1637/src/SevenSegmentFun.h and rename:
+void bouchingBall(
+to 
+void bouncingBall(
+then save and close. Now this file will complile properly. 
