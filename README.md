@@ -32,3 +32,4 @@ To assemble Boris, you'll need to ordrer some components. I provide the examples
 1x Single Position Single Throw (SPST) toggle switch, 6mm: https://www.amazon.com/MTS-101-Position-Miniature-Toggle-Switch/dp/B0799LBFNY \
 2x 5mm ~3v LED: https://www.amazon.com/gp/product/B072BL2VX1 \
 2x 220ohm resistor: https://www.amazon.com/gp/product/B072BL2VX1 \
+1x Cherry MX switch equivalent: https://www.amazon.com/Cherry-switches-MX1AG1NN-Mechanical-Keyboard/dp/B07RQTNS58 \
