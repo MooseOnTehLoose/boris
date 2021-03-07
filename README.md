@@ -23,3 +23,12 @@ All the files required to print your own enclosure can be found here: https://ww
 
 ## Electronics 
 A full Circuit Diagram and Parts list is coming soon
+
+
+To assemble Boris, you'll need to ordrer some components. I provide the examples I use but feel free to grab similar components elsewhere.
+
+1x Teensy-LC: https://www.pjrc.com/teensy/teensyLC.html \
+1x 4 Digit Display, TM1637: https://www.amazon.com/gp/product/B01DKISMXK/ \
+1x Single Position Single Throw (SPST) toggle switch, 6mm: https://www.amazon.com/MTS-101-Position-Miniature-Toggle-Switch/dp/B0799LBFNY \
+2x 5mm ~3v LED: https://www.amazon.com/gp/product/B072BL2VX1 \
+2x 220ohm resistor: https://www.amazon.com/gp/product/B072BL2VX1 \
