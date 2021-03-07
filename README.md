@@ -1,6 +1,9 @@
 # B.O.R.I.S
 Button Operated Resupply Initiation System
 
+![Alt text](images/boris-box.jpg?raw=true "Boris")
+
+
 Boris is an in-development project to enable external control of supply drop pod call ins for Deep Rock Galactic. It consists of two components, an application to read the current value of nitra in game and send value updates, and a microcontroller that is capable of recieving those updates and controlling the ability of the end user to request supply drops based on the current amount of nitra. 
 
 All files and information necessary to build your own Boris will be added to this repository so you can customize it to match your preferences, class colors and even beard. 
