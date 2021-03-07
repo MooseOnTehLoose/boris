@@ -6,6 +6,10 @@ Boris is an in-development project to enable external control of supply drop pod
 All files and information necessary to build your own Boris will be added to this repository so you can customize it to match your preferences, class colors and even beard. 
 
 ## Companion App
+
+![Alt text](images/GUI-Beta.png?raw=true "Companion App")
+
+
 The companion application that reads in values and transmits them over USB is designed in golang and is compatible with Windows. On launch, it attempts to locate the teensy by listing all open COM ports and then attempting to connect to each one, send PING and recieve ACK. It will maintain a connection to the first COM port that successfully responds and does not support multiple teensys being connected at once. 
 
 ## Teensy-LC
