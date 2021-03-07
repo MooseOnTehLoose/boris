@@ -22,8 +22,8 @@ The teensy-lc is an arduino compatible microcontroller that manages the user inp
 All the files required to print your own enclosure can be found here: https://www.prusaprinters.org/prints/58566-boris
 
 ## Electronics 
-A full Circuit Diagram and Parts list is coming soon
 
+![Alt text](images/schematic.png?raw=true "schematic")
 
 To assemble Boris, you'll need to ordrer some components. I provide the examples I use but feel free to grab similar components elsewhere.
 
